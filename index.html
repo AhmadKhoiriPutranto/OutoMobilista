@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hypercar Lokal</title>
+    <style>
+        /* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: #fff;
+    overflow-x: hidden;
+}
+
+
+/* Navbar Styling */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 1rem 2rem;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ffcc00;
+    text-transform: uppercase;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-links li {
+    position: relative;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.nav-links a:hover {
+    color: #ffcc00;
+    transform: scale(1.1);
+}
+
+
+/* Dropdown Menu Styling */
+/* Dropdown Menu */
+.dropdown:hover .dropdown-menu {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.dropdown-menu {
+    display: none;
+    flex-direction: column;
+    background: #444;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 0.5rem 0;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.dropdown-menu li {
+    margin: 0;
+}
+
+.dropdown-menu a {
+    color: white;
+    padding: 0.8rem 1.5rem;
+    display: block;
+    transition: background 0.3s ease;
+}
+
+.dropdown-menu a:hover {
+    background: #555;
+}
+
+/* Creative Hover Effects */
+.nav-links a::before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #ffcc00;
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.nav-links a:hover::before {
+    width: 100%;
+}
+
+/* Mobile Menu */
+.menu-toggle {
+    display: none;
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        width: 100%;
+        display: none;
+        transform: translateX(100%);
+    }
+
+    .nav-links.open {
+        display: flex;
+        transform: translateX(0);
+    }
+
+    .nav-links a {
+        text-align: center;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+}
+   
+   /* Hero Section */
+.hero {
+    height: 100vh;
+    background: url('hero-background.jpg') center/cover no-repeat;
+    position: relative;
+}
+
+.overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.cta-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.cta-form input {
+    padding: 10px;
+    font-size: 1rem;
+    width: 300px;
+    border: none;
+    border-radius: 5px;
+}
+
+.cta-form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #e50914;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cta-form button:hover {
+    background-color: #f40612;
+}
+
+/* Features Section */
+.features {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #111;
+}
+
+.features .feature {
+    margin-bottom: 30px;
+}
+
+.features h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.features p {
+    font-size: 1rem;
+}
+
+/* News Section */
+.news-section {
+    padding: 3rem 2rem;
+    background-color: #333;
+}
+
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: bold;
+}
+
+.news-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.news-card {
+    background-color: #131010;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.news-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.news-card h3 {
+    font-size: 1.3rem;
+    margin: 1rem;
+    font-weight: bold;
+}
+
+.news-card p {
+    font-size: 1rem;
+    margin: 0 1rem 1rem;
+}
+
+.news-card span {
+    font-size: 0.85rem;
+    color: #888;
+    margin-left: 1rem;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .news-card {
+        width: 100%;
+    }
+}
+
+.news-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.news-article {
+    background-color: #f9f9f9;
+    border-left: 5px solid #3498db;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.news-article h2 {
+    font-size: 22px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.news-article p {
+    font-size: 16px;
+    color: #555;
+}
+
+.news-article a {
+    display: inline-block;
+    margin-top: 10px;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.news-article a:hover {
+    text-decoration: underline;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+footer ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+footer ul li {
+    margin: 0 15px;
+}
+
+footer ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+footer ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        margin-top: 10px;
+    }
+
+    .news-section {
+        padding: 10px;
+    }
+
+    .news-article {
+        padding: 15px;
+    }
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+ 
+
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">Otomobilista</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#services">Services</a></li>
+                <li class="dropdown">
+                    <a href="#Community pages" class="dropdown-toggle">About</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#team">Car brands</a></li>
+                        <li><a href="#mission">Send your Photo</a></li>
+                        <li><a href="#contact">See More</a></li>
+                    </ul>
+                </li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle">☰</div>
+        </nav>
+    </header>
+
+             <!-- Hero Section -->
+    <section class="hero">
+        <div class="overlay">
+            <div class="hero-content">
+                <h1>The Place where you can see WEC Program and Such</h1>
+                <p>See anywhere, Cancel anytime</p>
+                <form class="cta-form">
+                    <input type="News" placeholder="Search News" required>
+                    <button type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+         <!-- News Section -->
+    <section class="news-section">
+        <h2 class="section-title">Top Headlines</h2>
+        <div class="news-cards">
+            <!-- News Card 1 -->
+            <div class="news-card">
+                <img src="CAR IMG/1bff0d478467b2853cb9d814411decec.jpg" alt="News Image 1">
+                <h3>Aston Martin Valkryie Joined WEC and IMSA Program from 2025.</h3>
+                <p>Aston Martin valkryie has already tested their Manufacturer Hypercars and already been Legalled to take the Grid on Endurance Program. </p>
+                <span>By Otomobilista | Dec 11, 2024</span>
+            </div>
+            <!-- News Card 2 -->
+            <div class="news-card">
+                <img src="CAR IMG/Gd9OritXIAAal22.jpg" alt="News Image 2">
+                <h3>🚨 BREAKING: Genesis reveal GMR-001 LMDH 🚨</h3>
+                <p>The Korean brand has revealed their global prototype!
+                    What you need to know:
+                    
+                    🏁 WEC debut 2026, IMSA 2027
+                    🤝 Operated by IDEC Sport
+                    🧑‍🚀 Andre Lotterer and Pipo Derani, first drivers
+                    🚗 Oreca Chassis</p>
+                <span>By Otomobilista | Dec 04, 2024</span>
+            </div>
+            <!-- News Card 3 -->
+            <div class="news-card">
+                <img src="CAR IMG/Gc0Of4KXsAABo7_.jpg" alt="News Image 3">
+                <h3>BREAKING NEWS : Mercedes AMG will be back on WEC Grid In 2025</h3>
+                <p>The German marque is set to make their WEC debut with two cars in the LMGT3 category, with their partner team to be confirmed.
+
+                    Are you excited to see the three-pointed star in WEC? 💬
+                    </p>
+                <span>By Otomobilista | Nov 20, 2024</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main News Section -->
+    <main>
+        <section class="news-section">
+            <article class="news-article">
+                <h2>Breaking News: One and the only one Pagani Spotted in Indonesia?</h2>
+                <p>There's a Groundbreaking news, A pagani Huayra has already been spotted in indonesia the one and only one in here...</p>
+                <a href="#">Read more</a>
+            </article>
+
+            <article class="news-article">
+                <h2>Supercar News : What if, The lexus LFA were Found In Indonesia? </h2>
+                <p>What If, The only One Lexus LFA Still In indonesia Till now...</p>
+                <a href="#">Read more</a>
+            </article>
+
+            <article class="news-article">
+                <h2>Global News : A Major Issue </h2>
+                <p>There's a Major issue With LAmborghini and they will leave WEC Progress Due to their Engine problem and they will continue in IMSA.</p>
+                <a href="#">Read more</a>
+            </article>
+        </section>
+    </main>
+
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 News Today. All rights reserved.</p>
+        <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
